@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Orchid\Screen\AsSource;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 /**
  * @property DateTime $date
@@ -17,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Event extends Model
 {
-    use SoftDeletes, HasTimestamps;
+    use AsSource, SoftDeletes, HasTimestamps, HasSlug, HasFactory;
 
     /**
      * The database table used by the model.
@@ -84,4 +88,27 @@ class Event extends Model
     // Functions ...
 
     // Relations ...
+
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->usingLanguage('es')
+            ->doNotGenerateSlugsOnUpdate();
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

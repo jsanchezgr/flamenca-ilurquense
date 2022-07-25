@@ -17,6 +17,7 @@ class AddEventsTable extends Migration
             $table->id();
             $table->dateTimeTz('date')->nullable(false);
             $table->string('name')->nullable(false);
+            $table->string('slug')->nullable(false)->unique();
             $table->text('description')->nullable(false);
             $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
