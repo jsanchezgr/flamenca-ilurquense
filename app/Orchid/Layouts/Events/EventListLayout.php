@@ -3,7 +3,6 @@
 namespace App\Orchid\Layouts\Events;
 
 use App\Models\Event;
-use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
