@@ -26,6 +26,7 @@ class ArtistFactory extends Factory
         return [
             'name' => $this->generateFullName(),
             'nick' => fake()->userName(),
+            'type' => fake()->randomElement(['v', 'g', 'k', 'e', 'p', 'd']),
             'birthdate' => fake()->dateTimeBetween('-70 years', '-14 years'),
             'birthplace' => fake()->city(),
             'image' => fake()->imageUrl(),
